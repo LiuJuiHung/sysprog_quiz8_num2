@@ -4,11 +4,11 @@
 #include <string.h>
 #include <time.h>
 
-#include "parity.h"
+#include "num2.h"
 
 #define REPEAT 20
-#define INIT_VAL 1000000
-#define END_VAL 1000020
+#define INIT_VAL 22200
+#define END_VAL 22220
 
 double tvgetf()
 {
@@ -23,7 +23,7 @@ double tvgetf()
 
 void parityTest()
 {
-    FILE *file1 = fopen("parity_heatmap.txt", "w");
+    FILE *file1 = fopen("num2_heatmap.txt", "w");
     if (file1 == NULL) {
         printf("Error opening file!\n");
         exit(1);
@@ -36,7 +36,7 @@ void parityTest()
         for (int j = INIT_VAL; j < END_VAL; j++) {
             x = (uint32_t) j;
             tm = tvgetf();
-            parity_bit = parityGen(x);
+            parity_bit = func(x);
             tm -= tvgetf();
             fprintf(file1, "%d %d %f\n", i, j, -tm);
         }
